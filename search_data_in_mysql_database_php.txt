@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify certification</title>
+    <style>
+
+td,th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Verify Certification</h2>
+
+<form method="post" action="">
+    <label for="reg_no">Registration number:</label>
+    <input type="text" name="reg_no" id="reg_no" required>
+    <input type="submit" value="Search">
+</form>
+
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "students";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the product name from the form
+    $stdid = $_POST["reg_no"];
+
+    // SQL query to select all rows from the table where product name matches
+    $sql = "SELECT * FROM ducky WHERE registration_no LIKE '%$stdid%'";
+    
+    // Execute the query
+    $result = $conn->query($sql);
+
+    // Display the results
+    if ($result->num_rows > 0) {
+        echo "<h3>Verify registration number</h3>";
+        echo "<table border='1'>";
+        echo "<tr><th>Registration number</th><th>lastname</th><th>first name</th><th>DOB</th><th>course name</th><th>batch</th></tr>";
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>{$row['registration_no']}</td><td>{$row['lastname']}</td><td>{$row['firstname']}</td><td>{$row['dob']}</td><td>{$row['coursename']}</td><td>{$row['batch']}</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "<p>No results found for the given product name.</p>";
+    }
+    
+    // Close the result set
+    $result->close();
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+</body>
+</html>
