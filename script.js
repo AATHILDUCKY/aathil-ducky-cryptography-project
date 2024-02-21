@@ -9,7 +9,7 @@ const mynotes = [
   {
     header: "Search data in SQL (GUI)",
     notes:
-      '<h4>Insert input -> mysql</h4><code><a href="https://github.com/AATHILDUCKY/aathil-ducky-webdevelopment-resources/blob/main/search_data_in_mysql_database_php.txt">Source Code -> <b>Link here</b></a><br><br></code>',
+      '<h4>Search data -> mysql</h4><code><a href="https://github.com/AATHILDUCKY/aathil-ducky-webdevelopment-resources/blob/main/search_data_in_mysql_database_php.txt">Source Code -> <b>Link here</b></a><br><br></code>',
     description: "search , data , mysql, find, users data, sql",
   },
   {
