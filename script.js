@@ -18,6 +18,12 @@ const mynotes = [
       '<h4>Insert input -> mysql</h4><code><a href="https://github.com/AATHILDUCKY/aathil-ducky-webdevelopment-resources/blob/main/insert_input_data_in_mysql_database_php.txt">Source Code -> <b>Link here</b></a><br><br></code>',
     description: "insert , data , mysql, input, users data, sql",
   },
+  {
+    header: "tailwind header nav bar source code",
+    notes:
+      '<h4>header navbar using tailwindcss </h4><code><a href="https://github.com/AATHILDUCKY/aathil-ducky-webdevelopment-resources/blob/main/tailwind_header_nav_section.html">Source Code -> <b>Link here</b></a><br><br></code>',
+    description: "navbar, tailwind, tailwindcss, header",
+  },
   // Add more data here...
 ];
 
