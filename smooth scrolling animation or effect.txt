@@ -1,0 +1,44 @@
+// js script for smooth scrooling 
+
+const lenis = new Lenis();
+lenis.on("scroll", (e) => {
+  console.log(e);
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+
+
+
+--------------------------------------------------------------
+
+CDN
+
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+
+
+
+---------------------------------------------------------------
+
+//CSS for h screen boxes 
+
+body{
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+section{
+  height: 100vh;
+  padding: 0 clamp(4rem, 12vw, 20rem);
+  display: grid;
+  place-content: center;
+}
+
+section p{
+  font-size: clamp(2rem, 5vw, 8rem);
+}
