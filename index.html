@@ -9,13 +9,92 @@
       document.addEventListener("DOMContentLoaded", () => {
         let rockyouData = [];
 
-        fetch("sample.json")
-          .then((response) => response.json())
-          .then((data) => {
-            rockyouData = data;
-            sortRockYouData();
-          })
-          .catch((error) => console.error("Error loading JSON:", error));
+        const jsonFiles = [
+          "sample.json",
+          "small_rockyou_01.json",
+          "small_rockyou_02.json",
+          "small_rockyou_03.json",
+          "small_rockyou_04.json",
+          "small_rockyou_05.json",
+          "small_rockyou_06.json",
+          "small_rockyou_07.json",
+          "small_rockyou_08.json",
+          "small_rockyou_09.json",
+          "small_rockyou_10.json",
+          "small_rockyou_11.json",
+          "small_rockyou_12.json",
+          "small_rockyou_13.json",
+          "small_rockyou_14.json",
+          "small_rockyou_15.json",
+          "small_rockyou_16.json",
+          "small_rockyou_17.json",
+          "small_rockyou_18.json",
+          "small_rockyou_19.json",
+          "small_rockyou_20.json",
+          "small_rockyou_21.json",
+          "small_rockyou_22.json",
+          "small_rockyou_23.json",
+          "small_rockyou_24.json",
+          "small_rockyou_25.json",
+          "small_rockyou_26.json",
+          "small_rockyou_27.json",
+          "small_rockyou_28.json",
+          "small_rockyou_29.json",
+          "small_rockyou_30.json",
+          "small_rockyou_31.json",
+          "small_rockyou_32.json",
+          "small_rockyou_33.json",
+          "small_rockyou_34.json",
+          "small_rockyou_35.json",
+          "small_rockyou_36.json",
+          "small_rockyou_37.json",
+          "small_rockyou_38.json",
+          "small_rockyou_39.json",
+          "small_rockyou_40.json",
+          "small_rockyou_41.json",
+          "small_rockyou_42.json",
+          "small_rockyou_43.json",
+          "small_rockyou_44.json",
+          "small_rockyou_45.json",
+          "small_rockyou_46.json",
+          "small_rockyou_47.json",
+          "small_rockyou_48.json",
+          "small_rockyou_49.json",
+          "small_rockyou_50.json",
+          "small_rockyou_51.json",
+          "small_rockyou_52.json",
+          "small_rockyou_53.json",
+          "small_rockyou_54.json",
+          "small_rockyou_55.json",
+          "small_rockyou_56.json",
+          "small_rockyou_57.json",
+          "small_rockyou_58.json",
+          "small_rockyou_59.json",
+          "small_rockyou_60.json",
+          "small_rockyou_61.json",
+          "small_rockyou_62.json",
+          "small_rockyou_63.json",
+          "small_rockyou_64.json",
+          "small_rockyou_65.json",
+          "small_rockyou_66.json",
+          "small_rockyou_67.json",
+          "small_rockyou_68.json",
+          "small_rockyou_69.json",
+          "small_rockyou_70.json",
+          "small_rockyou_71.json",
+          "small_rockyou_72.json",
+        ]; // Add all JSON file names here
+
+        function fetchAllJsonFiles(files) {
+          const promises = files.map((file) =>
+            fetch(file).then((response) => response.json())
+          );
+          return Promise.all(promises);
+        }
+
+        function mergeData(dataArrays) {
+          return dataArrays.flat();
+        }
 
         function sortRockYouData() {
           rockyouData.sort((a, b) => {
@@ -24,6 +103,13 @@
             return 0;
           });
         }
+
+        fetchAllJsonFiles(jsonFiles)
+          .then((dataArrays) => {
+            rockyouData = mergeData(dataArrays);
+            sortRockYouData();
+          })
+          .catch((error) => console.error("Error loading JSON files:", error));
 
         window.search = function () {
           const searchTerm = document.getElementById("searchTerm").value.trim();
