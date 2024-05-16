@@ -1,0 +1,34 @@
+[
+    {
+        "word": "hello",
+        "md5": "5d41402abc4b2a76b9719d911017c592"
+    },
+    {
+        "word": "world",
+        "md5": "7d793037a0760186574b0282f2f435e7"
+    },
+    {
+        "word": "ducky",
+        "md5": "56975b83de847aa2ee9b2493b6c4bd8f"
+    },
+    {
+        "word": "cyebr",
+        "md5": "f5ab31894b19d130502cfe0ddb317b93"
+    },
+    {
+        "word": "micky",
+        "md5": "88025dfa752f97c46678bd66c3298f81"
+    },
+    {
+        "word": "jello",
+        "md5": "7aa6991a62353dd2761280cf592542dc"
+    },
+    {
+        "word": "leaf",
+        "md5": "bab4ff04cc14af66e4d42c85f888cfe6"
+    },
+    {
+        "word": "duck",
+        "md5": "36846677e3a8f4c0b16d8bdf8ef18608"
+    }
+]
