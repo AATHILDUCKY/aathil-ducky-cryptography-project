@@ -3,53 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <meta
-      name="google-site-verification"
-      content="BSYmdIZThUKc0tpjL405Fwx7ppaDeuOqlHGyPS9y_GY"
-    />
-    <title>Aathil Ducky - webdevelopment resources / source codes</title>
+    <title>RockYou JSON Sort and Search</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let rockyouData = [];
+
+        fetch("sample.json")
+          .then((response) => response.json())
+          .then((data) => {
+            rockyouData = data;
+            sortRockYouData();
+          })
+          .catch((error) => console.error("Error loading JSON:", error));
+
+        function sortRockYouData() {
+          rockyouData.sort((a, b) => {
+            if (a.word < b.word) return -1;
+            if (a.word > b.word) return 1;
+            return 0;
+          });
+        }
+
+        window.search = function () {
+          const searchTerm = document.getElementById("searchTerm").value.trim();
+          const md5SearchTerm = CryptoJS.MD5(searchTerm).toString();
+          const result = document.getElementById("result");
+
+          const match = rockyouData.find(
+            (item) =>
+              item.word === searchTerm ||
+              item.md5 === searchTerm ||
+              item.md5 === md5SearchTerm
+          );
+
+          if (match) {
+            result.innerHTML = `<h2>Match found:</h2> <h2>Word: ${match.word}</h2> <h2>MD5: ${match.md5}</h2>`;
+          } else {
+            result.innerHTML = "<h2>Not found in RockYou list</h2>";
+          }
+        };
+      });
+    </script>
   </head>
-
   <body>
-    <h1 class="top-header">👋 Aathil Ducky Source Codes</h1>
-    <input type="text" id="search" placeholder="Enter keywords..." />
-    <!-- Results container -->
-    <div id="resultsContainer"></div>
-
-    <script src="script.js"></script>
-
-    <div class="footer">
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      />
-      <div id="dragable">
-        <header id="dragzone">
-          <div class="wrapper">
-            <div class="myname">AATHIL DUCKY</div>
-            <div class="about">
-              Web developer (front-end , Wordpress) <br />
-              Computer Science Student | Blogger | YouTuber<br />
-              Python Programmer
-            </div>
-            <div class="social-icons">
-              <a href="https://www.youtube.com/@aathilducky"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.linkedin.com/in/aathil-ducky-95b12a218"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://twitter.com/AathilDucky"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="https://github.com/AATHILDUCKY"
-                ><i class="fab fa-github"></i
-              ></a>
-            </div>
-          </div>
-        </header>
-      </div>
-    </div>
+    <h1>RockYou JSON Sort and Search</h1>
+    <label for="searchTerm">Enter word or MD5 hash:</label>
+    <input type="text" id="searchTerm" />
+    <button onclick="search()">Search</button>
+    <div id="result"></div>
   </body>
 </html>
